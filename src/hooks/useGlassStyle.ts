@@ -6,7 +6,7 @@ const useGlassStyle = () => {
   const { strategy } = useAppStore();
 
   const baseBlur = 20;
-  const baseOpacity = 0.6;
+  const baseOpacity = 0.8;
   const maxVelocity = 5;
 
   let blur = baseBlur;
@@ -15,10 +15,10 @@ const useGlassStyle = () => {
   const normalizedVelocity = Math.min(velocity / maxVelocity, 1);
 
   if (strategy === 2 && isScrolling) {
-    blur = 4;
+    blur = 32;
     opacity = 0.95;
   } else if (strategy === 3 && isScrolling) {
-    blur = 40;
+    blur = 4;
     opacity = 0.3;
   } else if (strategy === 4) {
     blur = baseBlur + (0 - baseBlur) * normalizedVelocity;
