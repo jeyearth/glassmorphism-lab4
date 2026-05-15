@@ -1,25 +1,18 @@
 import { useState } from 'react';
 import { Settings, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useAppStore, type Strategy } from '../store';
+import { useAppStore } from '../store';
+import { STRATEGIES } from '../strategies';
 
 export const FAB = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { strategy, setStrategy } = useAppStore();
 
-  const strategies: { id: Strategy; label: string; desc: string }[] = [
-    { id: 1, label: '固定', desc: '常にベース値を維持' },
-    { id: 2, label: '二値・隠す', desc: 'スクロール中は不透明度を上げる' },
-    { id: 3, label: '二値・潰す', desc: 'スクロール中は透明度を上げる' },
-    { id: 4, label: '速度可変・隠す', desc: '速度に応じて不透明に' },
-    { id: 5, label: '速度可変・潰す', desc: '速度に応じて透明に' },
-  ];
-
   return (
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-24 right-4 z-50 p-4 bg-blue-600 text-white rounded-full shadow-lg"
+        className="fixed bottom-24 right-4 z-50 p-4 bg-blue-600 text-white rounded-full shadow-lg border border-blue-500"
       >
         <Settings className="w-6 h-6" />
       </button>
@@ -39,16 +32,16 @@ export const FAB = () => {
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl z-50 p-6 pb-safe"
+              className="fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl z-50 p-6 pb-20 max-h-[80vh] overflow-y-auto"
             >
-              <div className="flex justify-between items-center mb-6">
+              <div className="flex justify-between items-center mb-6 sticky top-0 bg-white pb-2">
                 <h2 className="text-xl font-bold">Strategy</h2>
                 <button onClick={() => setIsOpen(false)} className="p-2">
                   <X className="w-6 h-6" />
                 </button>
               </div>
               <div className="space-y-3">
-                {strategies.map((s) => (
+                {STRATEGIES.map((s) => (
                   <button
                     key={s.id}
                     onClick={() => setStrategy(s.id)}
@@ -58,7 +51,7 @@ export const FAB = () => {
                         : 'border-gray-200 hover:border-blue-200'
                     }`}
                   >
-                    <div className="font-bold text-gray-900">{s.label}</div>
+                    <div className="font-bold text-gray-900">{s.name}</div>
                     <div className="text-sm text-gray-500 mt-1">{s.desc}</div>
                   </button>
                 ))}

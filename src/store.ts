@@ -1,13 +1,12 @@
-import { create } from 'zustand';
-
-export type Strategy = 1 | 2 | 3 | 4 | 5;
+import { create } from "zustand";
+import { STRATEGIES, type StrategyId } from "./strategies";
 
 interface AppState {
-  strategy: Strategy;
-  setStrategy: (strategy: Strategy) => void;
+  strategy: StrategyId;
+  setStrategy: (strategy: StrategyId) => void;
 }
 
 export const useAppStore = create<AppState>((set) => ({
-  strategy: 1,
+  strategy: STRATEGIES[0].id,
   setStrategy: (strategy) => set({ strategy }),
 }));

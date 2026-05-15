@@ -1,37 +1,39 @@
 import { useScroll } from '../ScrollContext';
 import { useAppStore } from '../store';
+import { STRATEGIES, BASE_PROPERTIES } from '../strategies';
 
 const useGlassStyle = () => {
   const { isScrolling, velocity } = useScroll();
   const { strategy } = useAppStore();
+  const currentStrategy = STRATEGIES.find((s) => s.id === strategy) || STRATEGIES[0];
 
-  const baseBlur = 20;
-  const baseOpacity = 0.8;
   const maxVelocity = 5;
 
-  let blur = baseBlur;
-  let opacity = baseOpacity;
+  let blur = BASE_PROPERTIES.blur;
+  let opacity = BASE_PROPERTIES.opacity;
 
   const normalizedVelocity = Math.min(velocity / maxVelocity, 1);
 
-  if (strategy === 2 && isScrolling) {
-    blur = 32;
-    opacity = 0.95;
-  } else if (strategy === 3 && isScrolling) {
-    blur = 4;
-    opacity = 0.3;
-  } else if (strategy === 4) {
-    blur = baseBlur + (0 - baseBlur) * normalizedVelocity;
-    opacity = baseOpacity + (1.0 - baseOpacity) * normalizedVelocity;
-  } else if (strategy === 5) {
-    blur = baseBlur + (60 - baseBlur) * normalizedVelocity;
-    opacity = baseOpacity + (0.2 - baseOpacity) * normalizedVelocity;
+  if (currentStrategy.isDynamic) {
+    if (currentStrategy.targetBlur !== undefined) {
+      blur = BASE_PROPERTIES.blur + (currentStrategy.targetBlur - BASE_PROPERTIES.blur) * normalizedVelocity;
+    }
+    if (currentStrategy.targetOpacity !== undefined) {
+      opacity = BASE_PROPERTIES.opacity + (currentStrategy.targetOpacity - BASE_PROPERTIES.opacity) * normalizedVelocity;
+    }
+  } else if (isScrolling) {
+    if (currentStrategy.targetBlur !== undefined) {
+      blur = currentStrategy.targetBlur;
+    }
+    if (currentStrategy.targetOpacity !== undefined) {
+      opacity = currentStrategy.targetOpacity;
+    }
   }
 
   return {
     backdropFilter: `blur(${blur}px)`,
     backgroundColor: `rgba(255, 255, 255, ${opacity})`,
-    transition: strategy === 2 || strategy === 3 ? 'none' : 'backdrop-filter 0.1s, background-color 0.1s',
+    transition: currentStrategy.hasAnimation ? 'backdrop-filter 0.1s, background-color 0.1s' : 'none',
   };
 };
 
