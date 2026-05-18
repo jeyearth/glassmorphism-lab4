@@ -6,7 +6,7 @@ import { STRATEGIES } from '../strategies';
 
 export const FAB = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { strategy, setStrategy } = useAppStore();
+  const { strategy, setStrategy, isBinaryAnimationEnabled, toggleBinaryAnimation } = useAppStore();
 
   return (
     <>
@@ -36,9 +36,20 @@ export const FAB = () => {
             >
               <div className="flex justify-between items-center mb-6 sticky top-0 bg-white pb-2">
                 <h2 className="text-xl font-bold">Strategy</h2>
-                <button onClick={() => setIsOpen(false)} className="p-2">
-                  <X className="w-6 h-6" />
-                </button>
+                <div className="flex items-center gap-4">
+                  <label className="flex items-center gap-2 text-sm font-medium text-gray-700 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={isBinaryAnimationEnabled}
+                      onChange={toggleBinaryAnimation}
+                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                    />
+                    2値アニメーション
+                  </label>
+                  <button onClick={() => setIsOpen(false)} className="p-2">
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
               </div>
               <div className="space-y-3">
                 {STRATEGIES.map((s) => (

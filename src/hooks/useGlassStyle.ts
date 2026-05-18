@@ -4,7 +4,7 @@ import { STRATEGIES, BASE_PROPERTIES } from '../strategies';
 
 const useGlassStyle = () => {
   const { isScrolling, velocity } = useScroll();
-  const { strategy } = useAppStore();
+  const { strategy, isBinaryAnimationEnabled } = useAppStore();
   const currentStrategy = STRATEGIES.find((s) => s.id === strategy) || STRATEGIES[0];
 
   const maxVelocity = 5;
@@ -30,10 +30,16 @@ const useGlassStyle = () => {
     }
   }
 
+  const shouldAnimate = currentStrategy.isDynamic
+    ? currentStrategy.hasAnimation
+    : isBinaryAnimationEnabled;
+
+  const transitionTime = 0.7;
+
   return {
     backdropFilter: `blur(${blur}px)`,
     backgroundColor: `rgba(255, 255, 255, ${opacity})`,
-    transition: currentStrategy.hasAnimation ? 'backdrop-filter 0.1s, background-color 0.1s' : 'none',
+    transition: shouldAnimate ? `backdrop-filter ${transitionTime}s ease-out, background-color ${transitionTime}s ease-out` : 'none',
   };
 };
 

@@ -64,8 +64,8 @@ export const STRATEGIES: StrategyConfig[] = [
     name: "A5 二値・α低_blurt低",
     desc: "スクロール中は不透明度を下げ、blurも下げる",
     isDynamic: false,
-    targetBlur: BASE_PROPERTIES.blur * 0.5,
-    targetOpacity: BASE_PROPERTIES.opacity * 0.5,
+    targetBlur: BASE_PROPERTIES.blur * 0.3,
+    targetOpacity: BASE_PROPERTIES.opacity * 0.3,
     hasAnimation: false,
   },
   {
