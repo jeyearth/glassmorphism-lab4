@@ -34,7 +34,7 @@ export const STRATEGIES: StrategyConfig[] = [
   },
   {
     id: "A2",
-    name: "A2 二値・blur低い",
+    name: "A2 二値・blur低",
     desc: "スクロール中はblurを下げる",
     isDynamic: false,
     targetBlur: BASE_PROPERTIES.blur * 0.5,
@@ -52,7 +52,7 @@ export const STRATEGIES: StrategyConfig[] = [
   },
   {
     id: "A4",
-    name: "A4 二値・blur",
+    name: "A4 二値・blur高",
     desc: "スクロール中はblurを上げる",
     isDynamic: false,
     targetBlur: BASE_PROPERTIES.blur * 1.5,
@@ -61,7 +61,7 @@ export const STRATEGIES: StrategyConfig[] = [
   },
   {
     id: "A5",
-    name: "A5 二値・α低_blurt低",
+    name: "A5 二値・α低_blur低",
     desc: "スクロール中は不透明度を下げ、blurも下げる",
     isDynamic: false,
     targetBlur: BASE_PROPERTIES.blur * 0.3,
@@ -70,7 +70,7 @@ export const STRATEGIES: StrategyConfig[] = [
   },
   {
     id: "A6",
-    name: "A6 二値・α高_blurt低",
+    name: "A6 二値・α高_blur低",
     desc: "スクロール中は不透明度を上げ、blurは下げる",
     isDynamic: false,
     targetBlur: BASE_PROPERTIES.blur * 0.5,
@@ -79,7 +79,7 @@ export const STRATEGIES: StrategyConfig[] = [
   },
   {
     id: "A7",
-    name: "A4 二値・α低_blurt高",
+    name: "A7 二値・α低_blur高",
     desc: "スクロール中は不透明度を下げ、blurは上げる",
     isDynamic: false,
     targetBlur: BASE_PROPERTIES.blur * 1.5,
@@ -88,7 +88,7 @@ export const STRATEGIES: StrategyConfig[] = [
   },
   {
     id: "A8",
-    name: "A4 二値・α高_blurt高",
+    name: "A8 二値・α高_blur高",
     desc: "スクロール中は不透明度を上げ、blurも上げる",
     isDynamic: false,
     targetBlur: BASE_PROPERTIES.blur * 1.5,
