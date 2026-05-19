@@ -7,12 +7,12 @@ export const BackButton = () => {
   const glassStyle = useGlassStyle();
 
   return (
-    <button 
+    <button
       onClick={() => navigate(-1)}
-      className="fixed top-4 left-4 z-20 p-2 rounded-full border border-white/30"
+      className="fixed top-4 left-4 z-20 p-2 rounded-full"
       style={glassStyle}
     >
-      <ChevronLeft className="w-6 h-6 text-black" />
+      <ChevronLeft className="w-8 h-8 text-black" />
     </button>
   );
 };

@@ -5,8 +5,8 @@ export const BottomTabBar = () => {
   const glassStyle = useGlassStyle();
 
   return (
-    <div 
-      className="fixed bottom-0 w-full z-10 border-t border-white/20 pb-safe"
+    <div
+      className="fixed bottom-0 w-full z-10 pb-4"
       style={glassStyle}
     >
       <div className="flex justify-around items-center h-20">
