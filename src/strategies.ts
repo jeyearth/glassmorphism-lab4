@@ -18,7 +18,7 @@ export const BASE_PROPERTIES = {
 export const STRATEGIES: StrategyConfig[] = [
   {
     id: "4",
-    name: "可変なし",
+    name: "4 可変なし",
     desc: "総合的な好ましさ基準",
     isDynamic: false,
     hasAnimation: true,
